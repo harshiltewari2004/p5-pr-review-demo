@@ -3794,3 +3794,14 @@ export { Vector };
 if (typeof p5 !== 'undefined') {
   vector(p5, p5.prototype);
 }
+
+/**
+ * Linearly interpolates each component of two n-dimensional vectors.
+ * Mismatched dimensions use the smaller dimension, like other binary ops.
+ */
+export function lerpComponents(a, b, amt) {
+  const n = Math.min(a.length, b.length);
+  const out = new Array(n);
+  for (let i = 0; i < n; i++) out[i] = a[i] + (b[i] - a[i]) * amt;
+  return out;
+}
